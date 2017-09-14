@@ -4,6 +4,7 @@ import 'package:http/http.dart';
 import 'package:usage/usage.dart';
 
 import 'accounts_client.dart';
+import 'service_accounts_client.dart';
 import 'orgs_client.dart';
 import 'pools_client.dart';
 import 'apps_client.dart';
@@ -36,6 +37,8 @@ abstract class SvClient extends BaseClient {
 
   // Resource clients
   AccountsClient            get accounts            => new AccountsClient(this, '$rootUrl/$servicePath', getAccountId, getSessionId, saveSession, deleteSession);
+
+  ServiceAccountsClient     get serviceAccounts     => new ServiceAccountsClient(this, '$rootUrl/$servicePath', getAccountId, getSessionId, saveSession, deleteSession);
 
   OrgsClient                get orgs                => new OrgsClient(this, '$rootUrl/$servicePath', deleteSession);
 
