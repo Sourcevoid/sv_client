@@ -28,7 +28,7 @@ class ServiceAccountsClient {
     _client.ga?.sendEvent('serviceAccounts', 'insert');
 
     // Make REST request
-    var response = await _client.post('$_backend/accounts',
+    var response = await _client.post('$_backend/orgs/${org_id}/accounts',
         headers: {"Content-type": "application/json"},
         body: JSON.encode(args));
 
