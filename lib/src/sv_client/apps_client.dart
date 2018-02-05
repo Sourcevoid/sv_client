@@ -292,5 +292,9 @@ class AppsClient {
 
     return response.body;
   }
+
+  Future swapPaths(String org_id, String pool_id, String app_id, String path_prefix_x, String path_prefix_y) async {
+    throw("swapPaths is not implemented");
+  }
 }
 
