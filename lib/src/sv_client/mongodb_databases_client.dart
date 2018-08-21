@@ -66,14 +66,14 @@ class MongodbDatabasesClient {
     }
 
     // Decode json
-    var jsonMapList = JSON.decode(response.body);
+    var jsonMapList = json.decode(response.body);
 
     // Create database list
     for (var json in jsonMapList) {
       databases.add(new MongodbDatabase.fromJson(json));
     }
 
-//    var listReply = new DatabasesListReply.fromJson(JSON.decode(response.body));
+//    var listReply = new DatabasesListReply.fromJson(json.decode(response.body));
 
     return databases;
   }
@@ -103,7 +103,7 @@ class MongodbDatabasesClient {
     }
 
     // Decode reply
-    database = new MongodbDatabase.fromJson(JSON.decode(response.body));
+    database = new MongodbDatabase.fromJson(json.decode(response.body));
 
     return database;
   }
@@ -114,7 +114,7 @@ class MongodbDatabasesClient {
 
     var response = await _client.put('$_backend/orgs/$org_id/pools/$pool_id/services/mongodb/$service_id/databases/$database_name',
                                      headers: {"Content-type": "application/json"},
-                                     body: JSON.encode(database));
+                                     body: json.encode(database));
 
     // Handle response
     if(response.statusCode == 401) {

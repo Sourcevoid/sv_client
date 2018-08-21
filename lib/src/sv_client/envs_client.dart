@@ -31,7 +31,7 @@ class EnvsClient {
     // Make REST request
     var response = await _client.post('$_backend/orgs/$org_id/pools/$pool_id/apps/$app_id/envs',
         headers: {"Content-type": "application/json"},
-        body: JSON.encode(args));
+        body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -50,7 +50,7 @@ class EnvsClient {
     }
 
     // Decode insert reply
-    var reply = new EnvsInsertReply.fromJson(JSON.decode(response.body));
+    var reply = new EnvsInsertReply.fromJson(json.decode(response.body));
 
     return reply.insert_id;
   }
@@ -78,7 +78,7 @@ class EnvsClient {
     }
 
     // Decode list reply
-    var listReply = new EnvsListReply.fromJson(JSON.decode(response.body));
+    var listReply = new EnvsListReply.fromJson(json.decode(response.body));
 
     return listReply.envs;
   }
@@ -106,7 +106,7 @@ class EnvsClient {
     }
 
     // Decode list reply
-    var retrieveReply = new EnvsRetrieveReply.fromJson(JSON.decode(response.body));
+    var retrieveReply = new EnvsRetrieveReply.fromJson(json.decode(response.body));
 
     return retrieveReply.env;
   }
@@ -122,7 +122,7 @@ class EnvsClient {
 
     var response = await _client.put('$_backend/orgs/$org_id/pools/$pool_id/apps/$app_id/envs/$env_id',
         headers: {"Content-type": "application/json"},
-        body: JSON.encode(env));
+        body: json.encode(env));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -249,7 +249,7 @@ class EnvsClient {
     // use the uri to create a dart:io websocket object.
 
     // Encode auth data into basic auth password value
-//    var password = BASE64.encode(JSON.encode(authData).codeUnits);
+//    var password = BASE64.encode(json.encode(authData).codeUnits);
 
     // Create websocket uri including basic auth password
 //    var websocketUri = '$_backend/orgs/$org_id/pools/$pool_id/apps/$app_id/envs/$env_id/console'.replaceFirst('https://', 'wss://user:${password}@');
@@ -350,7 +350,7 @@ class EnvsClient {
 
     if(archive != null) {
       // Encode archive binary data as base64
-      var archiveBase64 = BASE64.encode(archive);
+      var archiveBase64 = base64.encode(archive);
 
       // Make request
       response = await _client.post('$_backend/orgs/$org_id/pools/$pool_id/apps/$app_id/envs/$env_id/deploy/archive/$scm_subtype',

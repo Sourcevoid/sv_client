@@ -27,7 +27,7 @@ class DisksClient {
     // Make REST request
     var response = await _client.post('$_backend/orgs/$org_id/pools/$pool_id/disks',
                                       headers: {"Content-type": "application/json"},
-                                      body: JSON.encode(args));
+                                      body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -46,7 +46,7 @@ class DisksClient {
     }
 
     // Decode insert reply
-    var reply = new DisksInsertReply.fromJson(JSON.decode(response.body));
+    var reply = new DisksInsertReply.fromJson(json.decode(response.body));
 
     return reply.insert_id;
   }
@@ -74,7 +74,7 @@ class DisksClient {
     }
 
     // Decode list reply
-    var listReply = new DisksListReply.fromJson(JSON.decode(response.body));
+    var listReply = new DisksListReply.fromJson(json.decode(response.body));
 
     return listReply.disks;
   }
@@ -102,7 +102,7 @@ class DisksClient {
     }
 
     // Decode list reply
-    var retrieveReply = new DisksRetrieveReply.fromJson(JSON.decode(response.body));
+    var retrieveReply = new DisksRetrieveReply.fromJson(json.decode(response.body));
 
     return retrieveReply.disk;
   }
@@ -110,7 +110,7 @@ class DisksClient {
   Future update(String org_id, String pool_id, String disk_id, Disk disk) async {
     var response = await _client.put('$_backend/orgs/$org_id/pools/$pool_id/disks/$disk_id',
                                      headers: {"Content-type": "application/json"},
-                                     body: JSON.encode(disk));
+                                     body: json.encode(disk));
 
     // Log event
     _client.ga?.sendEvent('disks', 'update', label: org_id);
@@ -182,7 +182,7 @@ class DisksClient {
     }
 
     // Decode list reply
-    var retrieveReply = new DisksAppsReply.fromJson(JSON.decode(response.body));
+    var retrieveReply = new DisksAppsReply.fromJson(json.decode(response.body));
 
     return retrieveReply.apps;
   }

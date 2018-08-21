@@ -44,7 +44,7 @@ class ScmsClient {
     }
 
     // Decode list reply
-    var reply = new ScmsProviderConnectReply.fromJson(JSON.decode(response.body));
+    var reply = new ScmsProviderConnectReply.fromJson(json.decode(response.body));
 
     return reply.redirect_uri;
   }
@@ -102,7 +102,7 @@ class ScmsClient {
     }
 
     // Decode reply
-    var reply = new ScmsProviderListReply.fromJson(JSON.decode(response.body));
+    var reply = new ScmsProviderListReply.fromJson(json.decode(response.body));
 
     return reply.providers;
   }
@@ -179,7 +179,7 @@ class ScmsClient {
     }
 
     // Decode reply
-    var reply = new ScmsReposListReply.fromJson(JSON.decode(response.body));
+    var reply = new ScmsReposListReply.fromJson(json.decode(response.body));
 
     return reply.repos;
   }
@@ -207,7 +207,7 @@ class ScmsClient {
     }
 
     // Decode reply
-    var reply = new ScmsRepoBranchesListReply.fromJson(JSON.decode(response.body));
+    var reply = new ScmsRepoBranchesListReply.fromJson(json.decode(response.body));
 
     return reply.branches;
   }
@@ -235,7 +235,7 @@ class ScmsClient {
     }
 
     // Decode reply
-    var reply = new ScmsRepoTagsListReply.fromJson(JSON.decode(response.body));
+    var reply = new ScmsRepoTagsListReply.fromJson(json.decode(response.body));
 
     return reply.tags;
   }

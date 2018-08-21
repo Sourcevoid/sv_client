@@ -66,14 +66,14 @@ class PostgresqlDatabasesClient {
     }
 
     // Decode json
-    var jsonMapList = JSON.decode(response.body);
+    var jsonMapList = json.decode(response.body);
 
     // Create database list
     for (var json in jsonMapList) {
       databases.add(new PostgresqlDatabase.fromJson(json));
     }
 
-//    var listReply = new DatabasesListReply.fromJson(JSON.decode(response.body));
+//    var listReply = new DatabasesListReply.fromJson(json.decode(response.body));
 
     return databases;
   }
@@ -103,7 +103,7 @@ class PostgresqlDatabasesClient {
     }
 
     // Decode reply
-    database = new PostgresqlDatabase.fromJson(JSON.decode(response.body));
+    database = new PostgresqlDatabase.fromJson(json.decode(response.body));
 
     return database;
   }
@@ -114,7 +114,7 @@ class PostgresqlDatabasesClient {
 
     var response = await _client.put('$_backend/orgs/$org_id/pools/$pool_id/services/postgresql/$service_id/databases/$database_name',
                                      headers: {"Content-type": "application/json"},
-                                     body: JSON.encode(database));
+                                     body: json.encode(database));
 
     // Handle response
     if(response.statusCode == 401) {

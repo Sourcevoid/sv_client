@@ -27,7 +27,7 @@ class MysqlTablesClient {
     // Make REST request
     var response = await _client.post('$_backend/orgs/$org_id/pools/$pool_id/services/mysql/$service_id/databases/$database_name/tables',
                                        headers: {"Content-type": "application/json"},
-                                       body: JSON.encode(newColl));
+                                       body: json.encode(newColl));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -46,7 +46,7 @@ class MysqlTablesClient {
     }
 
     // Decode reply
-    var reply = new MysqlTable.fromJson(JSON.decode(response.body));
+    var reply = new MysqlTable.fromJson(json.decode(response.body));
 
     return reply;
   }
@@ -76,7 +76,7 @@ class MysqlTablesClient {
     }
 
     // Decode reply
-    var reply = JSON.decode(response.body);
+    var reply = json.decode(response.body);
     if(reply is List) {
       for(var item in reply) {
         tables.add(new MysqlTable.fromJson(item));
@@ -109,7 +109,7 @@ class MysqlTablesClient {
     }
 
     // Decode reply
-    var reply = JSON.decode(response.body);
+    var reply = json.decode(response.body);
 
     return new MysqlTable.fromJson(reply);
   }

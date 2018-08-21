@@ -88,7 +88,7 @@ class SvServerClient extends SvClient {
     var file = new File(_keyValueDir + Platform.pathSeparator + filename);
 
     // Write to file
-    file.writeAsStringSync(value, mode: FileMode.WRITE, flush: true);
+    file.writeAsStringSync(value, mode: FileMode.write, flush: true);
   }
 
   // Unset config value
@@ -140,7 +140,7 @@ class SvServerClient extends SvClient {
       var files = new Directory(_keyValueDir).listSync();
 
       for (var file in files) {
-        if(file.statSync().type == FileSystemEntityType.FILE) {
+        if(file.statSync().type == FileSystemEntityType.file) {
           var key = path.basename(file.path);
           map[key] = getConfig(key);
         }
@@ -159,7 +159,7 @@ class SvServerClient extends SvClient {
       var files = new Directory(_keyValueDir).listSync();
 
       for (var file in files) {
-        if(file.statSync().type == FileSystemEntityType.FILE) {
+        if(file.statSync().type == FileSystemEntityType.file) {
           // Extra security measure to avoid deleting any other files
           if(file.path.contains(Platform.pathSeparator + "key_value")) {
             file.delete();

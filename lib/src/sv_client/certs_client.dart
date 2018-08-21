@@ -27,7 +27,7 @@ class CertsClient {
     // Make REST request
     var response = await _client.post('$_backend/orgs/$org_id/pools/$pool_id/certs',
                                       headers: {"Content-type": "application/json"},
-                                      body: JSON.encode(args));
+                                      body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -46,7 +46,7 @@ class CertsClient {
     }
 
     // Decode insert reply
-    var reply = new CertsInsertReply.fromJson(JSON.decode(response.body));
+    var reply = new CertsInsertReply.fromJson(json.decode(response.body));
 
     return reply.insert_id;
   }
@@ -74,7 +74,7 @@ class CertsClient {
     }
 
     // Decode list reply
-    var listReply = new CertsListReply.fromJson(JSON.decode(response.body));
+    var listReply = new CertsListReply.fromJson(json.decode(response.body));
 
     return listReply.certs;
   }
@@ -102,7 +102,7 @@ class CertsClient {
     }
 
     // Decode list reply
-    var retrieveReply = new CertsRetrieveReply.fromJson(JSON.decode(response.body));
+    var retrieveReply = new CertsRetrieveReply.fromJson(json.decode(response.body));
 
     return retrieveReply.cert;
   }
@@ -110,7 +110,7 @@ class CertsClient {
   Future update(String org_id, String pool_id, String cert_id, Cert cert) async {
     var response = await _client.put('$_backend/orgs/$org_id/pools/$pool_id/certs/$cert_id',
                                      headers: {"Content-type": "application/json"},
-                                     body: JSON.encode(cert));
+                                     body: json.encode(cert));
 
     // Log event
     _client.ga?.sendEvent('certs', 'update', label: org_id);

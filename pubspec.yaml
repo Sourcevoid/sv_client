@@ -3,16 +3,19 @@ version: 1.0.0
 authors:
   - Robert Åkerblom-Andersson <robert@sourcevoid.com>
 environment:
-  sdk: '>=1.9.0 <2.0.0'
+  sdk: '>=2.0.0 <3.0.0'
+
+dev_dependencies:
+  build_runner: ^0.10.0
+  build_web_compilers: ^0.4.0
 
 dependencies:
-  browser: any
-  http: "^0.11.3+2"
-  mongo_dart: "^0.2.5+1"
-  bson: "^0.2.0"
-  usage: "^2.2.2"
-  crypto: ">=0.9.2 <3.0.0"
-  convert: ">=1.0.0 <3.0.0"
+  http: ^0.11.3+17
+  mongo_dart: ^0.3.3
+  bson: ^0.3.2
+  usage: ^3.4.1
+  crypto: ^2.0.6
+  convert: ^2.0.2
   sv_models:
 #    path: ../sv_models
     git: https://github.com/Sourcevoid/sv_models

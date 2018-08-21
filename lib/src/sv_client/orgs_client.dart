@@ -27,7 +27,7 @@ class OrgsClient {
     // Make REST request
     var response = await _client.post('$_backend/orgs',
                                       headers: {"Content-type": "application/json"},
-                                      body: JSON.encode(args));
+                                      body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -46,7 +46,7 @@ class OrgsClient {
     }
 
     // Decode insert reply
-    var reply = new OrgsInsertReply.fromJson(JSON.decode(response.body));
+    var reply = new OrgsInsertReply.fromJson(json.decode(response.body));
 
     return reply.insert_id;
   }
@@ -74,7 +74,7 @@ class OrgsClient {
     }
 
     // Decode list reply
-    var retrieveReply = new OrgsRetrieveReply.fromJson(JSON.decode(response.body));
+    var retrieveReply = new OrgsRetrieveReply.fromJson(json.decode(response.body));
 
     return retrieveReply.org;
   }
@@ -88,7 +88,7 @@ class OrgsClient {
 
     var response = await _client.put('$_backend/orgs/$org_id',
                                      headers: {"Content-type": "application/json"},
-                                     body: JSON.encode(args));
+                                     body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -144,7 +144,7 @@ class OrgsClient {
     // Make REST request
     var response = await _client.post('$_backend/orgs/$org_id/billing',
         headers: {"Content-type": "application/json"},
-        body: JSON.encode(args));
+        body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -163,7 +163,7 @@ class OrgsClient {
     }
 
     // Decode enable reply
-//    var reply = new BillingsEnableReply.fromJson(JSON.decode(response.body));
+//    var reply = new BillingsEnableReply.fromJson(json.decode(response.body));
 
     return '';
   }
@@ -192,7 +192,7 @@ class OrgsClient {
     }
 
     // Decode reply
-//    var reply = new BillingsDisableReply.fromJson(JSON.decode(response.body));
+//    var reply = new BillingsDisableReply.fromJson(json.decode(response.body));
 
     return '';
   }
@@ -207,7 +207,7 @@ class OrgsClient {
     // Make REST request
     var response = await _client.put('$_backend/orgs/$org_id/billing',
                                       headers: {"Content-type": "application/json"},
-                                      body: JSON.encode(args));
+                                      body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -226,7 +226,7 @@ class OrgsClient {
     }
 
     // Decode enable reply
-//    var reply = new BillingsEnableReply.fromJson(JSON.decode(response.body));
+//    var reply = new BillingsEnableReply.fromJson(json.decode(response.body));
 
     return '';
   }
@@ -254,7 +254,7 @@ class OrgsClient {
     }
 
     // Decode disable reply
-//    var retrieveReply = new OrgsUpdateSupportPlanReply.fromJson(JSON.decode(response.body));
+//    var retrieveReply = new OrgsUpdateSupportPlanReply.fromJson(json.decode(response.body));
 
     return '';
   }
@@ -269,7 +269,7 @@ class OrgsClient {
     // Make REST request
     var response = await _client.post('$_backend/orgs/$org_id/usage',
                                       headers: {"Content-type": "application/json"},
-                                      body: JSON.encode(args));
+                                      body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -288,7 +288,7 @@ class OrgsClient {
     }
 
     // Decode reply
-    var reply = new OrgsUsageReply.fromJson(JSON.decode(response.body));
+    var reply = new OrgsUsageReply.fromJson(json.decode(response.body));
 
     return reply.usage;
   }
@@ -317,7 +317,7 @@ class OrgsClient {
     }
 
     // Decode reply
-    var reply = new OrgsCreditsBalanceReply.fromJson(JSON.decode(response.body));
+    var reply = new OrgsCreditsBalanceReply.fromJson(json.decode(response.body));
 
     return reply.credits_in_usd_bp;
   }
@@ -345,7 +345,7 @@ class OrgsClient {
     }
 
     // Decode reply
-    var reply = new OrgsInvoicesReply.fromJson(JSON.decode(response.body));
+    var reply = new OrgsInvoicesReply.fromJson(json.decode(response.body));
 
     return reply.invoices;
   }
@@ -373,7 +373,7 @@ class OrgsClient {
     }
 
     // Decode reply
-    var reply = new OrgsInvoiceReply.fromJson(JSON.decode(response.body));
+    var reply = new OrgsInvoiceReply.fromJson(json.decode(response.body));
 
     return reply.invoice;
   }
@@ -401,7 +401,7 @@ class OrgsClient {
     }
 
     // Decode list reply
-    var retrieveReply = new OrgsRnsReply.fromJson(JSON.decode(response.body));
+    var retrieveReply = new OrgsRnsReply.fromJson(json.decode(response.body));
 
     return retrieveReply.ids;
   }

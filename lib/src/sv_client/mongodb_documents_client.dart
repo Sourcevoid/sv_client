@@ -23,7 +23,7 @@ class MongodbDocumentsClient {
     // Make REST request
     var response = await _client.post('$_backend/orgs/$org_id/pools/$pool_id/services/mongodb/$service_id/databases/$database_name/collections/$collection_name/documents',
                                       headers: {"Content-type": "application/json"},
-                                      body: JSON.encode(document));
+                                      body: json.encode(document));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -41,7 +41,7 @@ class MongodbDocumentsClient {
       throw(response.body);
     }
 
-    return JSON.decode(response.body);
+    return json.encode(response.body);
   }
 
   Future<List> list(String org_id, String pool_id, String service_id, String database_name, String collection_name, {int limit, int skip}) async {
@@ -77,7 +77,7 @@ class MongodbDocumentsClient {
     }
 
     // Decode documents
-    var documents = JSON.decode(response.body);
+    var documents = json.decode(response.body);
 
     // NOTE: For now we skip creating object id's, we got a bug in dart2js where it work in our mustache templates
     // to use the object id as an css id in Dart, but when compiled to js it does not work. Like this:
@@ -121,12 +121,12 @@ class MongodbDocumentsClient {
     }
 
     // Decode document
-    var document = JSON.decode(response.body);
+    var document = json.decode(response.body);
 
     // TODO: Make pull request to add this as fromJson() of ObjectId to mongo_dart
     // Create ObjectId object
     if(document["_id"] != null) {
-      document['_id'] = new ObjectId.fromHexString((document['_id'] as String).substring(10, 34));
+      document['_id'] = new ObjectId.fromHexString((document['_id']).substring(10, 34));
     }
 
     return document;
@@ -147,7 +147,7 @@ class MongodbDocumentsClient {
 
     var response = await _client.put('$_backend/orgs/$org_id/pools/$pool_id/services/mongodb/$service_id/databases/$database_name/collections/$collection_name/documents/$document_id?${options}',
                                      headers: {"Content-type": "application/json"},
-                                     body: JSON.encode(document));
+                                     body: json.encode(document));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -165,7 +165,7 @@ class MongodbDocumentsClient {
       throw(response.body);
     }
 
-    return JSON.decode(response.body);
+    return json.encode(response.body);
   }
 
   Future delete(String org_id, String pool_id, String service_id, String database_name, String collection_name, String document_id) async {
@@ -191,7 +191,7 @@ class MongodbDocumentsClient {
       throw(response.body);
     }
 
-    return JSON.decode(response.body);
+    return json.encode(response.body);
   }
 }
 

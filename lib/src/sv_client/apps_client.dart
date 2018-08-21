@@ -27,7 +27,7 @@ class AppsClient {
     // Make REST request
     var response = await _client.post('$_backend/orgs/$org_id/pools/$pool_id/apps',
                                       headers: {"Content-type": "application/json"},
-                                      body: JSON.encode(args));
+                                      body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -46,7 +46,7 @@ class AppsClient {
     }
 
     // Decode insert reply
-    var reply = new AppsInsertReply.fromJson(JSON.decode(response.body));
+    var reply = new AppsInsertReply.fromJson(json.decode(response.body));
 
     return reply.insert_id;
   }
@@ -74,7 +74,7 @@ class AppsClient {
     }
 
     // Decode list reply
-    var listReply = new AppsListReply.fromJson(JSON.decode(response.body));
+    var listReply = new AppsListReply.fromJson(json.decode(response.body));
 
     return listReply.apps;
   }
@@ -102,7 +102,7 @@ class AppsClient {
     }
 
     // Decode list reply
-    var retrieveReply = new AppsRetrieveReply.fromJson(JSON.decode(response.body));
+    var retrieveReply = new AppsRetrieveReply.fromJson(json.decode(response.body));
 
     return retrieveReply.app;
   }
@@ -119,7 +119,7 @@ class AppsClient {
     // Make request
     var response = await _client.put('$_backend/orgs/$org_id/pools/$pool_id/apps/$app_id',
                                      headers: {"Content-type": "application/json"},
-                                     body: JSON.encode(app));
+                                     body: json.encode(app));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -238,7 +238,7 @@ class AppsClient {
     }
 
     // Decode reply
-    var retrieveReply = new AppsVerifyDomainReply.fromJson(JSON.decode(response.body));
+    var retrieveReply = new AppsVerifyDomainReply.fromJson(json.decode(response.body));
 
     return retrieveReply;
   }

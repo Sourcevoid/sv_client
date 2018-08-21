@@ -30,7 +30,7 @@ class ServiceAccountsClient {
     // Make REST request
     var response = await _client.post('$_backend/orgs/${org_id}/accounts',
         headers: {"Content-type": "application/json"},
-        body: JSON.encode(args));
+        body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -49,7 +49,7 @@ class ServiceAccountsClient {
     }
 
     // Decode insert reply
-    var reply = new ServiceAccountsInsertReply.fromJson(JSON.decode(response.body));
+    var reply = new ServiceAccountsInsertReply.fromJson(json.decode(response.body));
 
     return reply.insert_id;
   }
@@ -77,12 +77,12 @@ class ServiceAccountsClient {
     }
 
     // Decode list reply
-    var listReply = new ServiceAccountsListReply.fromJson(JSON.decode(response.body));
+    var listReply = new ServiceAccountsListReply.fromJson(json.decode(response.body));
 
     return listReply.accounts;
   }
 
-  Future<Account> retrieve(String org_id, String service_account_id) async {
+  Future<ServiceAccount> retrieve(String org_id, String service_account_id) async {
     var response = await _client.get('$_backend/orgs/${org_id}/accounts/${service_account_id}');
 
     // Log event
@@ -105,7 +105,7 @@ class ServiceAccountsClient {
     }
 
     // Decode list reply
-    var retrieveReply = new ServiceAccountsRetrieveReply.fromJson(JSON.decode(response.body));
+    var retrieveReply = new ServiceAccountsRetrieveReply.fromJson(json.decode(response.body));
 
     return retrieveReply.account;
   }
@@ -119,7 +119,7 @@ class ServiceAccountsClient {
 
     var response = await _client.put('$_backend/orgs/${org_id}/accounts/${service_account_id}',
         headers: {"Content-type": "application/json"},
-        body: JSON.encode(args));
+        body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -179,7 +179,7 @@ class ServiceAccountsClient {
     // Make REST request
     var response = await _client.post('$_backend/orgs/${org_id}/accounts/${service_account_id}/session',
         headers: {"Content-type": "application/json"},
-        body: JSON.encode(args));
+        body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -198,7 +198,7 @@ class ServiceAccountsClient {
     }
 
     // Decode insert reply
-    var reply = new ServiceAccountsCreateSessionReply.fromJson(JSON.decode(response.body));
+    var reply = new ServiceAccountsCreateSessionReply.fromJson(json.decode(response.body));
 
     // Save session id and token
     saveSession(reply.session_id, reply.session_token);
@@ -256,7 +256,7 @@ class ServiceAccountsClient {
     }
 
     // Decode list reply
-    var retrieveReply = new ServiceAccountsOperationsReply.fromJson(JSON.decode(response.body));
+    var retrieveReply = new ServiceAccountsOperationsReply.fromJson(json.decode(response.body));
 
     return retrieveReply.operations;
   }

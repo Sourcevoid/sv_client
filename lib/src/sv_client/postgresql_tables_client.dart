@@ -27,7 +27,7 @@ class PostgresqlTablesClient {
     // Make REST request
     var response = await _client.post('$_backend/orgs/$org_id/pools/$pool_id/services/postgresql/$service_id/databases/$database_name/schemas/$schema_name/tables/$table_name',
                                       headers: {"Content-type": "application/json"},
-                                      body: JSON.encode(table));
+                                      body: json.encode(table));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -50,7 +50,7 @@ class PostgresqlTablesClient {
     return response.body;
 
     // Decode reply
-//    var reply = new PostgresqlTable.fromJson(JSON.decode(response.body));
+//    var reply = new PostgresqlTable.fromJson(json.decode(response.body));
 //
 //    return reply;
   }
@@ -80,7 +80,7 @@ class PostgresqlTablesClient {
     }
 
     // Decode reply
-    var reply = JSON.decode(response.body);
+    var reply = json.decode(response.body);
     if(reply is List) {
       for(var item in reply) {
         tables.add(new PostgresqlTable.fromJson(item));
@@ -113,7 +113,7 @@ class PostgresqlTablesClient {
     }
 
     // Decode reply
-    var reply = JSON.decode(response.body);
+    var reply = json.decode(response.body);
 
     return new PostgresqlTable.fromJson(reply);
   }

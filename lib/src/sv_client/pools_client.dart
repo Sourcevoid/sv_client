@@ -27,7 +27,7 @@ class PoolsClient {
     // Make REST request
     var response = await _client.post('$_backend/orgs/$org_id/pools',
                                       headers: {"Content-type": "application/json"},
-                                      body: JSON.encode(args));
+                                      body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -46,7 +46,7 @@ class PoolsClient {
     }
 
     // Decode insert reply
-    var reply = new PoolsInsertReply.fromJson(JSON.decode(response.body));
+    var reply = new PoolsInsertReply.fromJson(json.decode(response.body));
 
     return reply.insert_id;
   }
@@ -74,7 +74,7 @@ class PoolsClient {
     }
 
     // Decode list reply
-    var listReply = new PoolsListReply.fromJson(JSON.decode(response.body));
+    var listReply = new PoolsListReply.fromJson(json.decode(response.body));
 
     return listReply.pools;
   }
@@ -102,7 +102,7 @@ class PoolsClient {
     }
 
     // Decode list reply
-    var retrieveReply = new PoolsRetrieveReply.fromJson(JSON.decode(response.body));
+    var retrieveReply = new PoolsRetrieveReply.fromJson(json.decode(response.body));
 
     return retrieveReply.pool;
   }
@@ -113,7 +113,7 @@ class PoolsClient {
 
     var response = await _client.put('$_backend/orgs/$org_id/pools/$pool_id',
                                      headers: {"Content-type": "application/json"},
-                                     body: JSON.encode(pool));
+                                     body: json.encode(pool));
 
     // Handle response
     if(response.statusCode == 401) {

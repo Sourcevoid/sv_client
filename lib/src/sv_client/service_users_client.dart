@@ -27,7 +27,7 @@ class ServiceUsersClient {
     // Make REST request
     var response = await _client.post('$_backend/orgs/$org_id/pools/$pool_id/services/$service_type/$service_id/users',
                                       headers: {"Content-type": "application/json"},
-                                      body: JSON.encode(args));
+                                      body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -46,7 +46,7 @@ class ServiceUsersClient {
     }
 
     // Decode insert reply
-    var reply = new ServiceUsersInsertReply.fromJson(JSON.decode(response.body));
+    var reply = new ServiceUsersInsertReply.fromJson(json.decode(response.body));
 
     return reply.insert_id;
   }
@@ -74,7 +74,7 @@ class ServiceUsersClient {
     }
 
     // Decode list reply
-    var listReply = new ServiceUsersListReply.fromJson(JSON.decode(response.body));
+    var listReply = new ServiceUsersListReply.fromJson(json.decode(response.body));
 
     return listReply.service_users;
   }
@@ -102,7 +102,7 @@ class ServiceUsersClient {
     }
 
     // Decode list reply
-    var retrieveReply = new ServiceUsersRetrieveReply.fromJson(JSON.decode(response.body));
+    var retrieveReply = new ServiceUsersRetrieveReply.fromJson(json.decode(response.body));
 
     return retrieveReply.service_user;
   }
@@ -113,7 +113,7 @@ class ServiceUsersClient {
 
     var response = await _client.put('$_backend/orgs/$org_id/pools/$pool_id/services/$service_type/$service_id/users/$service_username',
                                      headers: {"Content-type": "application/json"},
-                                     body: JSON.encode(user));
+                                     body: json.encode(user));
 
     // Handle response
     if(response.statusCode == 401) {

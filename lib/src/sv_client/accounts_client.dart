@@ -30,7 +30,7 @@ class AccountsClient {
     // Make REST request
     var response = await _client.post('$_backend/accounts',
                                       headers: {"Content-type": "application/json"},
-                                      body: JSON.encode(args));
+                                      body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -49,7 +49,7 @@ class AccountsClient {
     }
 
     // Decode insert reply
-    var reply = new AccountsInsertReply.fromJson(JSON.decode(response.body));
+    var reply = new AccountsInsertReply.fromJson(json.decode(response.body));
 
     return reply.insert_id;
   }
@@ -66,7 +66,7 @@ class AccountsClient {
     // Make REST request
     var response = await _client.post('$_backend/accounts/verify/email',
                                       headers: {"Content-type": "application/json"},
-                                      body: JSON.encode(args));
+                                      body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -85,7 +85,7 @@ class AccountsClient {
     }
 
     // Decode reply
-    var reply = new AccountsVerifyEmailReply.fromJson(JSON.decode(response.body));
+    var reply = new AccountsVerifyEmailReply.fromJson(json.decode(response.body));
 
     // Send back phone number (as saved in normalized format on the backend)
     account.phone = reply.phone;
@@ -103,7 +103,7 @@ class AccountsClient {
     // Make REST request
     var response = await _client.post('$_backend/accounts/verify/phone',
                                       headers: {"Content-type": "application/json"},
-                                      body: JSON.encode(args));
+                                      body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -122,7 +122,7 @@ class AccountsClient {
     }
 
     // Decode insert reply
-    var reply = new AccountsVerifyPhoneReply.fromJson(JSON.decode(response.body));
+    var reply = new AccountsVerifyPhoneReply.fromJson(json.decode(response.body));
 
     // Save session id and token
     saveSession(reply.session_id, reply.session_token);
@@ -140,7 +140,7 @@ class AccountsClient {
     // Make REST request
     var response = await _client.post('$_backend/accounts/reset',
                                       headers: {"Content-type": "application/json"},
-                                      body: JSON.encode(args));
+                                      body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -159,7 +159,7 @@ class AccountsClient {
     }
 
     // Decode reply
-    var reply = new AccountsResetReply.fromJson(JSON.decode(response.body));
+    var reply = new AccountsResetReply.fromJson(json.decode(response.body));
 
     return reply;
   }
@@ -174,7 +174,7 @@ class AccountsClient {
     // Make REST request
     var response = await _client.post('$_backend/accounts/verify/reset',
                                       headers: {"Content-type": "application/json"},
-                                      body: JSON.encode(args));
+                                      body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -193,7 +193,7 @@ class AccountsClient {
     }
 
     // Decode reply
-    var reply = new AccountsVerifyResetReply.fromJson(JSON.decode(response.body));
+    var reply = new AccountsVerifyResetReply.fromJson(json.decode(response.body));
 
     // Save session id and token
     saveSession(reply.session_id, reply.session_token);
@@ -224,7 +224,7 @@ class AccountsClient {
     }
 
     // Decode list reply
-    var retrieveReply = new AccountsRetrieveReply.fromJson(JSON.decode(response.body));
+    var retrieveReply = new AccountsRetrieveReply.fromJson(json.decode(response.body));
 
     return retrieveReply.account;
   }
@@ -238,7 +238,7 @@ class AccountsClient {
 
     var response = await _client.put('$_backend/accounts',
                                      headers: {"Content-type": "application/json"},
-                                     body: JSON.encode(args));
+                                     body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -298,7 +298,7 @@ class AccountsClient {
     // Make REST request
     var response = await _client.post('$_backend/accounts/signin',
                                       headers: {"Content-type": "application/json"},
-                                      body: JSON.encode(args));
+                                      body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -317,7 +317,7 @@ class AccountsClient {
     }
 
     // Decode insert reply
-    var reply = new AccountsSignInReply.fromJson(JSON.decode(response.body));
+    var reply = new AccountsSignInReply.fromJson(json.decode(response.body));
 
     // Save session id and token
     saveSession(reply.session_id, reply.session_token);
@@ -335,7 +335,7 @@ class AccountsClient {
     // Make REST request
     var response = await _client.post('$_backend/accounts/signout',
                                       headers: {"Content-type": "application/json"},
-                                      body: JSON.encode(args));
+                                      body: json.encode(args));
 
     // Handle response
     if(response.statusCode == 401) {
@@ -384,7 +384,7 @@ class AccountsClient {
     }
 
     // Decode list reply
-    var retrieveReply = new AccountsSessionsReply.fromJson(JSON.decode(response.body));
+    var retrieveReply = new AccountsSessionsReply.fromJson(json.decode(response.body));
 
     return retrieveReply.sessions;
   }
@@ -412,7 +412,7 @@ class AccountsClient {
     }
 
     // Decode list reply
-    var retrieveReply = new AccountsOperationsReply.fromJson(JSON.decode(response.body));
+    var retrieveReply = new AccountsOperationsReply.fromJson(json.decode(response.body));
 
     return retrieveReply.operations;
   }
@@ -440,7 +440,7 @@ class AccountsClient {
     }
 
     // Decode list reply
-    var listReply = new AccountsOrgsReply.fromJson(JSON.decode(response.body));
+    var listReply = new AccountsOrgsReply.fromJson(json.decode(response.body));
 
     return listReply.orgs;
   }
