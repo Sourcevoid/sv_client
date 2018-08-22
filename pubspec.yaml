@@ -20,6 +20,3 @@ dependencies:
 #    path: ../sv_models
     git: https://github.com/Sourcevoid/sv_models
 
-analyzer:
-  strong-mode: true
-
