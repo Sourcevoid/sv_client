@@ -1,12 +1,8 @@
 # sv client
 
-This repo contains the Dart server and browser client for Sourcevoid's API. It is used by: 
+Temporary fork to enable old autodeploy of ibdev to work. 
 
-- [sv_cli](https://github.com/Sourcevoid/sv_cli) (Sourcevoid CLI App)
-- [cloud.sourcevoid.com](https://cloud.sourcevoid.com/) (Sourcevoid Web App) 
+This repo is now maintained on Bitbucket. 
 
-## Example usage
-
-For example usage, look at the [Sourcevoid CLI app](https://github.com/Sourcevoid/sv_cli).
 
 
