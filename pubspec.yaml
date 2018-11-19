@@ -18,5 +18,5 @@ dependencies:
   convert: ^2.0.2
   sv_models:
 #    path: ../sv_models
-    git: https://github.com/Sourcevoid/sv_models
+    git: https://bitbucket.org/infobaleen/sv_models
 
